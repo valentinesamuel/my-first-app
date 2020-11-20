@@ -1,4 +1,8 @@
-<div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
-  </div>
-  
+<input type="text" [(ngModel)]="serverInputName" /><button
+  (click)="onCreateServer()"
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+>
+  Add Server Here
+</button>
+<p [innerText]="serverCreationStatus"></p>
