@@ -21,7 +21,7 @@ export class ServersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bankService.launchingData.subscribe((eve:string) => {
+    this.bankService.launchingData.subscribe((eve: string) => {
       alert(eve);
     });
   }
