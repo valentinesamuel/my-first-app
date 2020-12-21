@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BankService } from '../bank.service';
 
 @Component({
   selector: 'app-servers',
@@ -12,21 +13,26 @@ export class ServersComponent implements OnInit {
   serverCreated = false;
   servers = [];
 
-  constructor() {
+  constructor(private bankService: BankService) {
     setTimeout(() => {
       this.allowNewServer = true;
     }, 2000);
     this.serverInputName;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bankService.launchingData.subscribe((eve:string) => {
+      alert(eve);
+    });
+  }
 
   onCreateServer() {
     this.serverCreated = true;
     this.servers.push(this.serverInputName);
     this.serverCreationStatus =
       this.serverInputName + ' Server ' + ' was created!!';
-
-    this.serverInputName;
+  }
+  onlaunched() {
+    this.bankService.onlaunch(this.serverInputName);
   }
 }

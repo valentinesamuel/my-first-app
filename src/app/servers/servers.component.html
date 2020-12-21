@@ -5,5 +5,7 @@
 >
   Add Server Here
 </button>
-<p [innerText]="serverCreationStatus" *ngIf="serverCreated" ></p>
-<app-server  *ngFor="let serverItem of servers "></app-server>
+<p [innerText]="serverCreationStatus" *ngIf="serverCreated"></p>
+<app-server *ngFor="let serverItem of servers"></app-server>
+
+<button (click)="onlaunched()" class="btn btn-primary">Hello</button>
