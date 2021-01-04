@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entry',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entry.component.css'],
 })
 export class EntryComponent implements OnInit {
-
-  constructor() {}
+  name = '';
+  class = '';
+  time = '';
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
- 
+  jumpToServerChild() {
+    this.router.navigate(['servers', this.name, this.class, this.time]);
+  }
 }

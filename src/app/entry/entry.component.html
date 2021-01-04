@@ -1,1 +1,15 @@
 <h1>This is the home (entry) component</h1>
+<h3>Enter your details below from the</h3>
+<label for="name">Enter your name here please</label>
+<input type="text" id="name" [(ngModel)]="name" />
+<br />
+<label for="name2">Enter your class here please</label>
+<input type="text" id="name2" [(ngModel)]="class" />.
+<br />
+<label for="name3">Enter your time here please</label>
+<input type="time" id="name3" [(ngModel)]="time" />
+<br />
+
+<button class="btn btn-warning" (click)="jumpToServerChild()">
+  Jump and send my data to the server childcomponent..
+</button>

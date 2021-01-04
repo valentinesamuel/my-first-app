@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -7,19 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./servers.component.css'],
 })
 export class ServersComponent implements OnInit {
- serverName = '';
-  serverClass = '';
-  serverTime = '';
-  constructor(private route:ActivatedRoute) { }
+  name = '';
+  class = '';
+  time = '';
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit(): void {
-    this.serverName = this.route.snapshot.params['name'];
-    this.serverClass = this.route.snapshot.params['class'];
-    this.serverTime = this.route.snapshot.params['time'];
+  ngOnInit(): void {}
 
+  toServerDetails() {
+    this.router.navigate([this.name, this.class, this.time], {
+      relativeTo: this.route,
+    });
   }
-  
-
-
-
 }

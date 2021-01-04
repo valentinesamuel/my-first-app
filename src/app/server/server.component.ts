@@ -7,15 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./server.component.css'],
 })
 export class ServerComponent {
-  name = '';
-  class = '';
-  time = '';
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
-  goToServers() {
-    //some authentication can be done here
-    this.router.navigate(['servers', this.name, this.class, this.time]);
-    console.log(this.time);
-  }
+
 }

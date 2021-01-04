@@ -7,11 +7,16 @@ import { ServerComponent } from '../app/server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EntryComponent } from './entry/entry.component';
+import { ServerChildComponent } from './servers/server-child/server-child.component';
 
 const appRoutes: Routes = [
   { path: '', component: EntryComponent },
   { path: 'server', component: ServerComponent },
-  { path: 'servers/:name/:class/:time', component: ServersComponent },
+  {
+    path: 'servers',
+    component: ServersComponent,
+    children: [{ path: ':name/:class/:time', component: ServerChildComponent }],
+  },
 ];
 
 @NgModule({
@@ -20,6 +25,7 @@ const appRoutes: Routes = [
     ServerComponent,
     ServersComponent,
     EntryComponent,
+    ServerChildComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
   providers: [],
