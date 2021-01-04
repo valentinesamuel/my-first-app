@@ -7,21 +7,15 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./server.component.css'],
 })
 export class ServerComponent {
-  // serverid: number = 12;
-  // serverStatus = 'offline';
-  // getServerStatus() {
-  //   return this.serverStatus;
-  // }
+  name = '';
+  class = '';
+  time = '';
 
-  // getColor() {
-  //   return this.serverStatus === 'Online' ? 'green' : 'red';
-  // }
   constructor(private router: Router, private route: ActivatedRoute) {}
-  // constructor() {
-  //   this.serverStatus = Math.random() > 0.5 ? 'Online' : 'Offline';
-  // }
+
   goToServers() {
     //some authentication can be done here
-    this.router.navigate(['unit'], { relativeTo: this.route });
+    this.router.navigate(['servers', this.name, this.class, this.time]);
+    console.log(this.time);
   }
 }

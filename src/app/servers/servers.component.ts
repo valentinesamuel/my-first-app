@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BankService } from '../bank.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -7,32 +7,19 @@ import { BankService } from '../bank.service';
   styleUrls: ['./servers.component.css'],
 })
 export class ServersComponent implements OnInit {
-  allowNewServer = false;
-  serverCreationStatus = 'The servers you create will show here';
-  serverInputName = '';
-  serverCreated = false;
-  servers = [];
-
-  constructor(private bankService: BankService) {
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000);
-    this.serverInputName;
-  }
+ serverName = '';
+  serverClass = '';
+  serverTime = '';
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.bankService.launchingData.subscribe((eve: string) => {
-      alert(eve);
-    });
-  }
+    this.serverName = this.route.snapshot.params['name'];
+    this.serverClass = this.route.snapshot.params['class'];
+    this.serverTime = this.route.snapshot.params['time'];
 
-  onCreateServer() {
-    this.serverCreated = true;
-    this.servers.push(this.serverInputName);
-    this.serverCreationStatus =
-      this.serverInputName + ' Server ' + ' was created!!';
   }
-  onlaunched() {
-    this.bankService.onlaunch(this.serverInputName);
-  }
+  
+
+
+
 }

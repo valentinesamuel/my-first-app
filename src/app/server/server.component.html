@@ -1,9 +1,15 @@
-<!-- <p
-  [ngStyle]="{ backgroundColor: getColor() }"
-  [ngClass]="{ online: serverStatus === 'Online' }"
->
-  The server {{ serverid }} is {{ getServerStatus() }}
-</p> -->
-
 <h1>This is a server component</h1>
-<button class="btn btn-warning" (click)="goToServers()">Go to servers component</button>
+
+<h3>Enter your details below</h3>
+<label for="name">Enter your name here please</label>
+<input type="text" id="name" [(ngModel)]="name" />
+<br />
+<label for="name">Enter your class here please</label>
+<input type="text" id="name" [(ngModel)]="class" />.
+<br />
+<label for="name">Enter your time here please</label>
+<input type="time" id="name" [(ngModel)]="time" />
+<br />
+<button class="btn btn-warning" (click)="goToServers()">
+  Go to servers component
+</button>

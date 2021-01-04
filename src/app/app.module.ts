@@ -11,11 +11,16 @@ import { EntryComponent } from './entry/entry.component';
 const appRoutes: Routes = [
   { path: '', component: EntryComponent },
   { path: 'server', component: ServerComponent },
-  { path: 'servers', component: ServersComponent },
+  { path: 'servers/:name/:class/:time', component: ServersComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, ServerComponent, ServersComponent, EntryComponent],
+  declarations: [
+    AppComponent,
+    ServerComponent,
+    ServersComponent,
+    EntryComponent,
+  ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
   providers: [],
   bootstrap: [AppComponent],
