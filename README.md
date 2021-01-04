@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
 
+## How to install the app
+
+Before you run the app on a dev server, you first need to install the app by typing `npm install` in the terminal 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
