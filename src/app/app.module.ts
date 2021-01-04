@@ -17,6 +17,8 @@ const appRoutes: Routes = [
     component: ServersComponent,
     children: [{ path: ':name/:class/:time', component: ServerChildComponent }],
   },
+  { path: 'lost', component: EntryComponent},
+  { path: '**', redirectTo : 'lost'},
 ];
 
 @NgModule({
