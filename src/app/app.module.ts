@@ -8,6 +8,8 @@ import { ServersComponent } from './servers/servers.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EntryComponent } from './entry/entry.component';
 import { ServerChildComponent } from './servers/server-child/server-child.component';
+import { AuthService } from './services/authservice.service';
+import { AuthGuardService } from './services/guards/authguard.service';
 
 const appRoutes: Routes = [
   { path: '', component: EntryComponent },
@@ -15,10 +17,10 @@ const appRoutes: Routes = [
   {
     path: 'servers',
     component: ServersComponent,
-    children: [{ path: ':name/:class/:time', component: ServerChildComponent }],
+    children: [{ path: ':name/:class/:time', component: ServerChildComponent, canActivate:[AuthGuardService] }],
   },
-  { path: 'lost', component: EntryComponent},
-  { path: '**', redirectTo : 'lost'},
+  // { path: 'lost', component: EntryComponent},
+  // { path: '**', redirectTo : 'lost'},
 ];
 
 @NgModule({
@@ -30,7 +32,7 @@ const appRoutes: Routes = [
     ServerChildComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

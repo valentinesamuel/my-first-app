@@ -15,8 +15,12 @@ export class ServersComponent implements OnInit {
   ngOnInit(): void {}
 
   toServerDetails() {
-    this.router.navigate([this.name, this.class, this.time], {
-      relativeTo: this.route,
-    });
+    if (this.name == '' && this.class == '' && this.time == '') {
+      //do nothing
+    } else {
+      this.router.navigate([this.name, this.class, this.time], {
+        relativeTo: this.route,
+      });
+    }
   }
 }
