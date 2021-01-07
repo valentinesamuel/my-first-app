@@ -10,6 +10,7 @@ import { EntryComponent } from './entry/entry.component';
 import { ServerChildComponent } from './servers/server-child/server-child.component';
 import { AuthService } from './services/authservice.service';
 import { AuthGuardService } from './services/guards/authguard.service';
+import { DeactivateGuardService } from './services/guards/deactivate-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: EntryComponent },
@@ -17,9 +18,15 @@ const appRoutes: Routes = [
   {
     path: 'servers',
     component: ServersComponent,
-    // canActivate:[AuthGuardService],
+    canActivate: [AuthGuardService],
     canActivateChild: [AuthGuardService],
-    children: [{ path: ':name/:class/:time', component: ServerChildComponent },],
+    children: [
+      {
+        path: ':name/:class/:time',
+        component: ServerChildComponent,
+        canDeactivate: [DeactivateGuardService],
+      },
+    ],
   },
   { path: 'lost', component: EntryComponent },
   { path: '**', redirectTo: 'lost' },
@@ -34,7 +41,7 @@ const appRoutes: Routes = [
     ServerChildComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, DeactivateGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
