@@ -17,10 +17,12 @@ const appRoutes: Routes = [
   {
     path: 'servers',
     component: ServersComponent,
-    children: [{ path: ':name/:class/:time', component: ServerChildComponent, canActivate:[AuthGuardService] }],
+    // canActivate:[AuthGuardService],
+    canActivateChild: [AuthGuardService],
+    children: [{ path: ':name/:class/:time', component: ServerChildComponent },],
   },
-  // { path: 'lost', component: EntryComponent},
-  // { path: '**', redirectTo : 'lost'},
+  { path: 'lost', component: EntryComponent },
+  { path: '**', redirectTo: 'lost' },
 ];
 
 @NgModule({
