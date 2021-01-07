@@ -1,33 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { IDeactivateGuard } from 'src/app/services/guards/deactivate-guard.service';
 
 @Component({
   selector: 'app-server-child',
   templateUrl: './server-child.component.html',
   styleUrls: ['./server-child.component.css'],
 })
-export class ServerChildComponent implements OnInit {
-  serverName = '';
-  serverClass = '';
-  serverTime = '';
+export class ServerChildComponent implements OnInit, IDeactivateGuard {
+  server: { name: string; class: String; time: String };
+  editDetails: { name: string; class: String; time: String };
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.serverName = this.route.snapshot.params['name'];
-    this.route.params.subscribe((newParams) => {
-      this.serverName = newParams['name'];
+    // this.serverName = this.route.snapshot.params['name'];
+    this.route.params.subscribe((data: Params) => {
+      this.server = {
+        name: data['name'],
+        class: data['class'],
+        time: data['time'],
+      };
+      this.editDetails = { ...this.server };
     });
+  }
 
-    //
-    this.serverClass = this.route.snapshot.params['class'];
-    this.route.params.subscribe((newParams) => {
-      this.serverClass = newParams['class'];
-    });
-
-    //
-    this.serverTime = this.route.snapshot.params['time'];
-    this.route.params.subscribe((newParams) => {
-      this.serverTime = newParams['time'];
-    });
+  canExit() {
+    if (
+      this.server.class !== this.editDetails.class ||
+      this.server.name !== this.editDetails.name ||
+      this.server.time !== this.editDetails.time
+    ) {
+      if (confirm('If you leave, all unsaved changes will be lost!')) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
   }
 }
