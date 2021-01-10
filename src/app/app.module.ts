@@ -11,6 +11,8 @@ import { ServerChildComponent } from './servers/server-child/server-child.compon
 import { AuthService } from './services/authservice.service';
 import { AuthGuardService } from './services/guards/authguard.service';
 import { DeactivateGuardService } from './services/guards/deactivate-guard.service';
+import { serverChildResolver } from './services/resolvers/server-resolve.service';
+import { UserService } from './services/user-service.service';
 
 const appRoutes: Routes = [
   { path: '', component: EntryComponent },
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
         path: ':name/:class/:time',
         component: ServerChildComponent,
         canDeactivate: [DeactivateGuardService],
+        resolve: { server: serverChildResolver },
       },
     ],
   },
@@ -41,7 +44,13 @@ const appRoutes: Routes = [
     ServerChildComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  providers: [AuthService, AuthGuardService, DeactivateGuardService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    DeactivateGuardService,
+    serverChildResolver,
+    UserService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -14,15 +14,25 @@ export class ServerChildComponent implements OnInit, IDeactivateGuard {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // this.serverName = this.route.snapshot.params['name'];
-    this.route.params.subscribe((data: Params) => {
+    this.route.data.subscribe((data) => {
+      console.log(data);
+
       this.server = {
-        name: data['name'],
-        class: data['class'],
-        time: data['time'],
+        name: data['server']['name'],
+        class: data['server']['class'],
+        time: data['server']['time'],
       };
       this.editDetails = { ...this.server };
     });
+
+    // this.route.params.subscribe((data: Params) => {
+    //   this.server = {
+    //     name: data['name'],
+    //     class: data['class'],
+    //     time: data['time'],
+    //   };
+    //   this.editDetails = { ...this.server };
+    // });
   }
 
   canExit() {
