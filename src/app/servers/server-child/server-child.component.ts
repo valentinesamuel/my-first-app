@@ -15,8 +15,6 @@ export class ServerChildComponent implements OnInit, IDeactivateGuard {
 
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
-      console.log(data);
-
       this.server = {
         name: data['server']['name'],
         class: data['server']['class'],
