@@ -25,6 +25,7 @@ export class ServerChildComponent implements OnInit, IDeactivateGuard {
       this.editDetails = { ...this.server };
     });
 
+    //! I used thi sone below to fetch the data without resolve
     // this.route.params.subscribe((data: Params) => {
     //   this.server = {
     //     name: data['name'],
